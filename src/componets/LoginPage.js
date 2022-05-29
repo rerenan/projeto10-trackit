@@ -1,15 +1,20 @@
 import styled from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios";
 import { ThreeDots } from 'react-loader-spinner'
 
 import BigLogo from '../assets/img/BigLogo.svg'
+import UserContext from "../contexts/UserContext";
+
+
 export default function LoginPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const {setUserImg, setToken} = useContext(UserContext)
+    
     const navigate = useNavigate();
     function login(event){
         event.preventDefault();
@@ -22,7 +27,9 @@ export default function LoginPage(){
         request
             .then((r)=> {
                 setLoading(false);
+                setUserImg(r.data.image)
                 navigate('/hoje')
+                setToken(r.data.token)
             })
             .catch((err)=> {
                 alert(err.response.data.message);
@@ -43,7 +50,7 @@ export default function LoginPage(){
             <form onSubmit={login}>
                 <input required id="email" type="email" placeholder="email" onChange={(e)=> setEmail(e.target.value)}  value={email} disabled={loading}/>
                 <input required id="password" type="password" placeholder="senha" onChange={(e)=> setPassword(e.target.value)} value={password} disabled={loading}/>
-                <Button type="submit">{contentButton()}</Button>
+                <Button disabled={loading} type="submit">{contentButton()}</Button>
             </form>
             <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
         </Login>
@@ -102,6 +109,7 @@ const Login = styled.div`
 const Button = styled.button`
     width: 100%;
     height: 45px;
+    opacity: ${props=> props.disabled? '70%': '100%'};
     display: flex;
     justify-content: center;
     align-items: center;

@@ -50,7 +50,7 @@ export default function SignUpPage(){
                 <input required type="password" id="password" placeholder="senha" onChange={(e)=> setPassword(e.target.value)} value={password} disabled={loading}/>
                 <input required type="text" id="name" placeholder="nome" onChange={(e)=> setName(e.target.value)} value={name} disabled={loading}/>
                 <input required type="url" id="imageUrl" placeholder="foto" onChange={(e)=> setUrlImage(e.target.value)} value={urlImage} disabled={loading}/>
-                <Button type="submit">{contentButton()}</Button>
+                <Button disabled={loading} type="submit">{contentButton()}</Button>
             </form>
             <Link to="/">Já tem uma conta? Faça login!</Link>
         </SignUp>
@@ -109,6 +109,7 @@ const SignUp = styled.div`
 const Button = styled.button`
     width: 100%;
     height: 45px;
+    opacity: ${props=> props.disabled? '70%': '100%'};
     display: flex;
     justify-content: center;
     align-items: center;
