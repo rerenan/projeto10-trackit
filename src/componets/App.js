@@ -34,7 +34,6 @@ export default function App() {
 const Global = styled.div`
         font-family: 'Lexend Deca', sans-serif;
         width: 100%;
-        height: calc(100vh - 70px);
-
+        height: 100%;
     
 `

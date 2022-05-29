@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { ThreeDots } from 'react-loader-spinner'
 import UserContext from "../contexts/UserContext"
 
-export default function CreateHabitBox({hiddenCreateBox, setHiddenCreateBox}) {
+export default function CreateHabitBox({hiddenCreateBox, setHiddenCreateBox, getMyHabits}) {
 
     const DAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 
@@ -47,7 +47,9 @@ export default function CreateHabitBox({hiddenCreateBox, setHiddenCreateBox}) {
         request.then((res) => {
             setLoading(false);
             setHiddenCreateBox(true);
-            console.log(res)
+            getMyHabits();
+            setNameHabit("");
+            setSelectedDays([]);
         })
         request.catch((err)=>{
             setLoading(false);
@@ -69,7 +71,7 @@ export default function CreateHabitBox({hiddenCreateBox, setHiddenCreateBox}) {
     return (
         <CreateHabit  hidden={hiddenCreateBox} >
             <Selections>
-                <input type="text" placeholder="nome do hábito" onChange={(e) => setNameHabit(e.target.value)} disabled={loading}/>
+                <input type="text" placeholder="nome do hábito" onChange={(e) => setNameHabit(e.target.value)} disabled={loading} value={nameHabit}/>
                 {DAYS.map((day, index) => <Day onClick={() => !loading? selectionDay(index): null} color={selectedDays.indexOf(index)}>{day}</Day>)}
             </Selections>
             <div>

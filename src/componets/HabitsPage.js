@@ -10,31 +10,33 @@ export default function HabitsPage(){
     const [myHabits, setMyHabits] = useState([])
     const [hiddenCreateBox, setHiddenCreateBox] = useState(true);
     useEffect(()=> {
+        getMyHabits();
+    },[token])
+    function getMyHabits() {
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }
-
+        
 
         const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',config)
         promise.then((res)=> setMyHabits(res.data))
-    },[token])
-
+    }
     function generateMyHabits(){
-        if(myHabits){
-            return myHabits.map((habit)=> <Habit text={habit.name} days={habit.days}/>)
+        if(myHabits.length>0){
+            return myHabits.map((habit)=> <Habit text={habit.name} days={habit.days} id={habit.id} getMyHabits={getMyHabits}/>)
         }
         return <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
     }
 
     return(
-        <MyHabits>
+        <MyHabits heigth={myHabits.length}>
             <TopBar>
                 <h1>Meus hábitos</h1>
                 <AddHabitButton onClick={()=> setHiddenCreateBox(!hiddenCreateBox) }>+</AddHabitButton>
             </TopBar>
-            <CreateHabitBox hiddenCreateBox={hiddenCreateBox} setHiddenCreateBox={setHiddenCreateBox} />
+            <CreateHabitBox hiddenCreateBox={hiddenCreateBox} setHiddenCreateBox={setHiddenCreateBox} getMyHabits={getMyHabits}/>
             {generateMyHabits()}
         </MyHabits>
     )
@@ -42,14 +44,14 @@ export default function HabitsPage(){
 
 const MyHabits = styled.div`
     width:100%;
-    height: 100%;
+    height: ${props => props.heigth>3? '100%':'calc(100vh - 70px)' };
     padding: 18px;
     margin-top: 70px;
     background-color: #F2F2F2;
     box-sizing: border-box;
      >div:last-child{
         
-         margin-bottom: 120px; 
+        margin-bottom: 120px; 
     }
     h2 {
         font-size: 18px;
