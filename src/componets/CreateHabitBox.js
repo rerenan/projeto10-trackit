@@ -72,7 +72,7 @@ export default function CreateHabitBox({hiddenCreateBox, setHiddenCreateBox, get
         <CreateHabit  hidden={hiddenCreateBox} >
             <Selections>
                 <input type="text" placeholder="nome do hábito" onChange={(e) => setNameHabit(e.target.value)} disabled={loading} value={nameHabit}/>
-                {DAYS.map((day, index) => <Day onClick={() => !loading? selectionDay(index): null} color={selectedDays.indexOf(index)}>{day}</Day>)}
+                {DAYS.map((day, index) => <Day key={index} onClick={() => !loading? selectionDay(index): null} color={selectedDays.indexOf(index)}>{day}</Day>)}
             </Selections>
             <div>
                 <Button onClick={()=> setHiddenCreateBox(true)}>Cancelar</Button>

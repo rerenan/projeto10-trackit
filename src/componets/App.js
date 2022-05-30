@@ -13,11 +13,12 @@ import HistoryPage from './HistoryPage'
 export default function App() {
     const [userImg, setUserImg] = useState('')
     const [token, setToken] = useState('')
+    const [percentage, setPercentage] = useState(0)
     return (
         <Global>
             <BrowserRouter>
                  
-                <UserContext.Provider value={{userImg, setUserImg, token, setToken}}>
+                <UserContext.Provider value={{userImg, setUserImg, token, setToken, percentage, setPercentage}}>
                     <Routes>
                         <Route path="/" element={<LoginPage />} />
                         <Route path="/cadastro" element={<SignUpPage />} />

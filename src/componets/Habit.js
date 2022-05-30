@@ -3,7 +3,7 @@ import { useContext } from "react"
 import styled from "styled-components"
 import trashIcon from '../assets/img/trashIcon.svg'
 import UserContext from "../contexts/UserContext"
-export default function Habit({text, days, id, getMyHabits}){
+export default function Habit({index, text, days, id, getMyHabits}){
     const DAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 
     const { token } = useContext(UserContext)
@@ -32,7 +32,7 @@ export default function Habit({text, days, id, getMyHabits}){
             <h1>{text}</h1>
             <img src={trashIcon} alt="" onClick={()=> deleteHabit()} />
             </TopBar>
-            {DAYS.map((day,index)=> <Day color={days.indexOf(index)}>{day}</Day>)}
+            {DAYS.map((day,index)=> <Day key={index} color={days.indexOf(index)}>{day}</Day>)}
         </HabitBox>
     )
 }

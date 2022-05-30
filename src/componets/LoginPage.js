@@ -26,10 +26,11 @@ export default function LoginPage(){
         const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login',body)
         request
             .then((r)=> {
+                setToken(r.data.token)
                 setLoading(false);
                 setUserImg(r.data.image)
                 navigate('/hoje')
-                setToken(r.data.token)
+                
             })
             .catch((err)=> {
                 alert(err.response.data.message);

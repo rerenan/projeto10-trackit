@@ -11,7 +11,8 @@ export default function HabitsPage(){
     const [hiddenCreateBox, setHiddenCreateBox] = useState(true);
     useEffect(()=> {
         getMyHabits();
-    },[token])
+    },[])
+    
     function getMyHabits() {
         const config = {
             headers: {
@@ -25,7 +26,7 @@ export default function HabitsPage(){
     }
     function generateMyHabits(){
         if(myHabits.length>0){
-            return myHabits.map((habit)=> <Habit text={habit.name} days={habit.days} id={habit.id} getMyHabits={getMyHabits}/>)
+            return myHabits.map((habit,index)=> <Habit key={index} text={habit.name} days={habit.days} id={habit.id} getMyHabits={getMyHabits}/>)
         }
         return <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
     }
@@ -58,6 +59,11 @@ const MyHabits = styled.div`
         line-height: 22px;
         color: #666666;
     }
+    h1{
+        color: #126BA5;
+        font-size: 23px;
+        line-height: 29px;
+    }
 `
 const TopBar = styled.div`
     width:100%;
@@ -65,11 +71,7 @@ const TopBar = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-    h1{
-        color: #126BA5;
-        font-size: 23px;
-        line-height: 29px;
-    }
+    
 `
 const AddHabitButton = styled.div`
     width: 43px;
