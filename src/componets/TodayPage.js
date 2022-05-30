@@ -16,7 +16,7 @@ export default function TodayPage(){
     
     useEffect(()=>{
         getTodayHabits();
-    },[])
+    },[token])
 
     function getTodayHabits(){
         const config = {
@@ -35,7 +35,7 @@ export default function TodayPage(){
     function showPercentage(){
         const habitsConcluded = todayHabits.filter((habit)=> habit.done === true)
         if(habitsConcluded.length > 0){
-            const valuePercentage = (100 * habitsConcluded.length)/ todayHabits.length 
+            const valuePercentage = ((100 * habitsConcluded.length)/ todayHabits.length).toFixed(2) 
             setPercentage(valuePercentage);
 
             return <ColorText>{valuePercentage}% dos hábitos concluídos </ColorText>
@@ -46,7 +46,7 @@ export default function TodayPage(){
     }
 
     return (
-        <Home heigth ={0}>
+        <Home heigth ={todayHabits.length}>
             <h1>{TODAY}, {DATE}</h1>
             {showPercentage()}
             {todayHabits.map(({id, name, done, currentSequence, highestSequence})=> 

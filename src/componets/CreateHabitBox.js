@@ -20,7 +20,7 @@ export default function CreateHabitBox({hiddenCreateBox, setHiddenCreateBox, get
         if (selectedDays.indexOf(index) === -1) {
             setSelectedDays([...selectedDays, index])
         } else {
-            const newSelectedDays = selectedDays.filter((selectedIndex) => selectedIndex === index ? false : true)
+            const newSelectedDays = selectedDays.filter((selectedIndex) => selectedIndex === index)
             setSelectedDays(newSelectedDays)
         }
     }
