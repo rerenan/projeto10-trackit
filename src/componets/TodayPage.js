@@ -16,7 +16,9 @@ export default function TodayPage(){
     const [todayHabits, setTodayHabits] = useState([])
     
     useEffect(()=>{
-        getTodayHabits();
+        if(token !== ''){
+            getTodayHabits();
+        }   
     },[token])
 
     function getTodayHabits(){

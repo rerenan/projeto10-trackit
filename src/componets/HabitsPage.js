@@ -11,7 +11,9 @@ export default function HabitsPage(){
     const [hiddenCreateBox, setHiddenCreateBox] = useState(true);
 
     useEffect(()=> {
-        getMyHabits();
+        if(token !== ''){
+            getMyHabits();
+        }  
     },[token])
     
     function getMyHabits() {
