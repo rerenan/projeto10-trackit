@@ -11,6 +11,7 @@ import TodayPage from './TodayPage'
 import Footer from './Footer'
 import HabitsPage from './HabitsPage'
 import HistoryPage from './HistoryPage'
+
 export default function App() {
     const [userImg, setUserImg] = useState('')
     const [token, setToken] = useState('')

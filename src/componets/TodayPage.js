@@ -11,6 +11,7 @@ export default function TodayPage(){
     dayjs.locale('pt-br')
     const TODAY = dayjs().format('dddd').charAt(0).toUpperCase() + dayjs().format('dddd').slice(1)
     const DATE = dayjs().format('DD/MM')
+
     const {token, setPercentage} = useContext(UserContext);
     const [todayHabits, setTodayHabits] = useState([])
     

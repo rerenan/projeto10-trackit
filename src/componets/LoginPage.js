@@ -16,6 +16,7 @@ export default function LoginPage(){
     const {setUserImg, setToken} = useContext(UserContext)
     
     const navigate = useNavigate();
+    
     useEffect(()=> {
        
         const email = localStorage.getItem("email")

@@ -118,4 +118,4 @@ const Button = styled.button`
     color:white;
     font-size: 20.976px;
     line-height: 26px;
-    `
+`

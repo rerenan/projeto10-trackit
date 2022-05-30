@@ -9,9 +9,10 @@ export default function HabitsPage(){
     const {token} = useContext(UserContext)
     const [myHabits, setMyHabits] = useState([])
     const [hiddenCreateBox, setHiddenCreateBox] = useState(true);
+
     useEffect(()=> {
         getMyHabits();
-    },[])
+    },[token])
     
     function getMyHabits() {
         const config = {
